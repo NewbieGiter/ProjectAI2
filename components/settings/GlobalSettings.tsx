@@ -92,6 +92,18 @@ const CLI_OPTIONS: CLIOption[] = [
     enabled: true,
     models: getModelDefinitionsForCli('glm').map(({ id, name }) => ({ id, name })),
   },
+  {
+    id: 'kimi',
+    name: 'KIMI K2',
+    icon: '',
+    description: 'Moonshot KIMI K2 with advanced thinking capabilities',
+    color: 'from-purple-500 to-pink-600',
+    brandColor: '#A855F7',
+    downloadUrl: 'https://www.moonshot.cn',
+    installCommand: 'npm install -g @anthropic-ai/claude-code',
+    enabled: true,
+    models: getModelDefinitionsForCli('kimi').map(({ id, name }) => ({ id, name })),
+  },
 ];
 
 // Global settings are provided by context

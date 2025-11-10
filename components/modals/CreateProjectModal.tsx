@@ -98,6 +98,22 @@ const CLI_OPTIONS: CLIOption[] = [
     })),
     features: ['Claude-compatible runtime', 'GLM 4.6 reasoning', 'Text-only mode'],
   },
+  {
+    id: 'kimi',
+    name: 'KIMI K2',
+    icon: '🌙',
+    description: 'Moonshot KIMI K2 with advanced thinking capabilities',
+    color: 'from-purple-500 to-pink-600',
+    downloadUrl: 'https://www.moonshot.cn',
+    installCommand: 'npm install -g @anthropic-ai/claude-code',
+    models: getModelDefinitionsForCli('kimi').map(({ id, name, description, supportsImages }) => ({
+      id,
+      name,
+      description,
+      supportsImages,
+    })),
+    features: ['K2 Thinking mode', 'Enhanced reasoning', 'Claude Code compatible'],
+  },
 ];
 
 function generateUUID() {
