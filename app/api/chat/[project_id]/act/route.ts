@@ -15,6 +15,7 @@ import { initializeNextJsProject as initializeCodexProject, applyChanges as appl
 import { initializeNextJsProject as initializeCursorProject, applyChanges as applyCursorChanges } from '@/lib/services/cli/cursor';
 import { initializeNextJsProject as initializeQwenProject, applyChanges as applyQwenChanges } from '@/lib/services/cli/qwen';
 import { initializeNextJsProject as initializeGLMProject, applyChanges as applyGLMChanges } from '@/lib/services/cli/glm';
+import { initializeNextJsProject as initializeKimiProject, applyChanges as applyKimiChanges } from '@/lib/services/cli/kimi';
 import { getDefaultModelForCli, normalizeModelId } from '@/lib/constants/cliModels';
 import { streamManager } from '@/lib/services/stream';
 import type { ChatActRequest } from '@/types/backend';
@@ -407,6 +408,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
           ? initializeQwenProject
           : cliPreference === 'glm'
           ? initializeGLMProject
+          : cliPreference === 'kimi'
+          ? initializeKimiProject
           : initializeClaudeProject;
 
       executor(
@@ -428,6 +431,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
           ? applyQwenChanges
           : cliPreference === 'glm'
           ? applyGLMChanges
+          : cliPreference === 'kimi'
+          ? applyKimiChanges
           : applyClaudeChanges;
 
       const sessionId =
@@ -435,6 +440,8 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
           ? project.activeClaudeSessionId || undefined
           : cliPreference === 'cursor'
           ? project.activeCursorSessionId || undefined
+          : cliPreference === 'kimi'
+          ? project.activeKimiSessionId || undefined
           : undefined;
 
       executor(

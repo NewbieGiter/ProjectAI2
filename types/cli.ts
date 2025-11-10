@@ -3,12 +3,13 @@ import { CODEX_MODEL_DEFINITIONS } from '@/lib/constants/codexModels';
 import { CURSOR_MODEL_DEFINITIONS } from '@/lib/constants/cursorModels';
 import { QWEN_MODEL_DEFINITIONS } from '@/lib/constants/qwenModels';
 import { GLM_MODEL_DEFINITIONS } from '@/lib/constants/glmModels';
+import { KIMI_MODEL_DEFINITIONS } from '@/lib/constants/kimiModels';
 
 /**
  * Frontend CLI Type Definitions (claude-only variant)
  */
 
-export type CLIType = 'claude' | 'cursor' | 'codex' | 'gemini' | 'qwen' | 'glm';
+export type CLIType = 'claude' | 'cursor' | 'codex' | 'gemini' | 'qwen' | 'glm' | 'kimi';
 
 export interface CLIModel {
   id: string;
@@ -146,6 +147,26 @@ export const CLI_OPTIONS: CLIOption[] = [
     installCommand: 'zai devpack install claude',
     features: ['Claude-compatible agent runtime', 'GLM 4.6 reasoning'],
     models: GLM_MODEL_DEFINITIONS.map(({ id, name, description, supportsImages }) => ({
+      id,
+      name,
+      description,
+      supportsImages,
+    })),
+  },
+  {
+    id: 'kimi',
+    name: 'KIMI K2',
+    description: 'Moonshot KIMI K2 with advanced thinking capabilities',
+    icon: '/claude.png',
+    available: true,
+    configured: true,
+    enabled: true,
+    color: 'from-purple-500 to-pink-600',
+    brandColor: '#A855F7',
+    downloadUrl: 'https://www.moonshot.cn',
+    installCommand: 'npm install -g @anthropic-ai/claude-code',
+    features: ['K2 Thinking mode', 'Enhanced reasoning', 'Claude Code compatible'],
+    models: KIMI_MODEL_DEFINITIONS.map(({ id, name, description, supportsImages }) => ({
       id,
       name,
       description,
